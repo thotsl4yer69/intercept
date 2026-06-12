@@ -8,8 +8,6 @@ add extra keys freely (the core ignores unknowns and applies safe defaults).
 
 from __future__ import annotations
 
-from typing import Optional
-
 # Topics (active-spectrum layer).
 T_RF_CONTACT = "sentient/sensor/rf/contact"
 T_TSCM_BASELINE = "sentient/sensor/rf/tscm/baseline"
@@ -20,8 +18,8 @@ T_BT_TRACKER = "sentient/sensor/bt/tracker"
 def rf_contact(
     contact_id: str,
     classification: str = "unknown",
-    band: Optional[str] = None,
-    rssi: Optional[float] = None,
+    band: str | None = None,
+    rssi: float | None = None,
     **extra,
 ) -> dict:
     """sentient/sensor/rf/contact — one emitter per message.
@@ -49,9 +47,9 @@ def tscm_baseline(deltas: list) -> dict:
 
 def baseline_delta(
     delta_id: str,
-    band: Optional[str] = None,
+    band: str | None = None,
     delta_db: float = 0.0,
-    rssi: Optional[float] = None,
+    rssi: float | None = None,
     classification: str = "unknown",
 ) -> dict:
     d = {"id": delta_id, "delta_db": delta_db, "classification": classification}
@@ -65,8 +63,8 @@ def baseline_delta(
 def drone_detection(
     classification: str,
     confidence: float,
-    band: Optional[str] = None,
-    detection_id: Optional[str] = None,
+    band: str | None = None,
+    detection_id: str | None = None,
     **extra,
 ) -> dict:
     """sentient/sensor/rf/drone/detection — DeepSig/MobileNetV2-style output."""
@@ -81,8 +79,8 @@ def drone_detection(
 
 def bt_tracker(
     tracker_id: str,
-    rssi: Optional[float] = None,
-    name: Optional[str] = None,
+    rssi: float | None = None,
+    name: str | None = None,
     **extra,
 ) -> dict:
     """sentient/sensor/bt/tracker — BT/BLE scan; rising RSSI => following."""

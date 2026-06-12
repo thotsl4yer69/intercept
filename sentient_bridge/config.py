@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import os
 from dataclasses import dataclass
-from typing import Optional
 
 
 def _f(name: str, default: float) -> float:
@@ -36,7 +35,7 @@ class BridgeConfig:
     mqtt_host: str = "192.168.1.159"
     mqtt_port: int = 1883
     mqtt_user: str = "sentient"
-    mqtt_pass: Optional[str] = None
+    mqtt_pass: str | None = None
     mqtt_client_id: str = "intercept-bridge"
 
     # How often the simulator / poller emits a round of contacts.
@@ -47,7 +46,7 @@ class BridgeConfig:
     log_level: str = "INFO"
 
     @classmethod
-    def from_env(cls) -> "BridgeConfig":
+    def from_env(cls) -> BridgeConfig:
         return cls(
             mqtt_host=os.environ.get("SENTIENT_MQTT_HOST", "192.168.1.159"),
             mqtt_port=_i("SENTIENT_MQTT_PORT", 1883),

@@ -15,7 +15,6 @@ broker. Mirrors the kinds of contacts iNTERCEPT surfaces in the field:
 from __future__ import annotations
 
 import random
-from typing import List, Tuple
 
 from . import schemas
 
@@ -29,9 +28,9 @@ class ContactSimulator:
     def _jitter(self, base: float, spread: float) -> float:
         return round(base + self._rng.uniform(-spread, spread), 1)
 
-    def tick(self) -> List[Tuple[str, dict]]:
+    def tick(self) -> list[tuple[str, dict]]:
         """Return this round's (topic, payload) messages and advance state."""
-        out: List[Tuple[str, dict]] = []
+        out: list[tuple[str, dict]] = []
         t = self._tick
 
         # Steady KNOWN Wi-Fi AP — world-state context, never scored as a threat.
